@@ -31,7 +31,7 @@
 #define B4aActionInitialization_h 1
 
 #include "G4VUserActionInitialization.hh"
-
+#include "G4String.hh"
 
 namespace B4a
 {
@@ -41,12 +41,14 @@ namespace B4a
 class ActionInitialization : public G4VUserActionInitialization
 {
   public:
-    ActionInitialization();
+    ActionInitialization(const G4String& filename);
     ~ActionInitialization() override;
 
     void BuildForMaster() const override;
     void Build() const override;
 
+  private:
+    G4String _filename;
 };
 
 }

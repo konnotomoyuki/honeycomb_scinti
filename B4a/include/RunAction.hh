@@ -31,6 +31,7 @@
 #define B4RunAction_h 1
 
 #include "G4UserRunAction.hh"
+#include "G4String.hh"
 #include "globals.hh"
 
 class G4Run;
@@ -59,11 +60,13 @@ namespace B4
 class RunAction : public G4UserRunAction
 {
   public:
-    RunAction();
+    RunAction(const G4String& filename);
     ~RunAction() override;
 
     void BeginOfRunAction(const G4Run*) override;
     void   EndOfRunAction(const G4Run*) override;
+  private:
+    G4String _filename;
 };
 
 }

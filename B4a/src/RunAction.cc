@@ -40,7 +40,8 @@ namespace B4
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-RunAction::RunAction()
+RunAction::RunAction(const G4String& filename)
+  : _filename(filename)
 {
   // set printing event number per each event
   G4RunManager::GetRunManager()->SetPrintProgress(1);
@@ -94,7 +95,7 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 
   // Open an output file
   //
-  G4String fileName = "B4.root";
+  G4String fileName = _filename;
   // Other supported output types:
   // G4String fileName = "B4.csv";
   // G4String fileName = "B4.hdf5";

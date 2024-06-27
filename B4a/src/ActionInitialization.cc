@@ -41,8 +41,8 @@ namespace B4a
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-ActionInitialization::ActionInitialization()
-{}
+ActionInitialization::ActionInitialization(const G4String& filename)
+  : _filename(filename) {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -53,7 +53,7 @@ ActionInitialization::~ActionInitialization()
 
 void ActionInitialization::BuildForMaster() const
 {
-  SetUserAction(new RunAction);
+  SetUserAction(new RunAction(_filename));
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -61,7 +61,7 @@ void ActionInitialization::BuildForMaster() const
 void ActionInitialization::Build() const
 {
   SetUserAction(new PrimaryGeneratorAction);
-  SetUserAction(new RunAction);
+  SetUserAction(new RunAction(_filename));
   auto eventAction = new EventAction;
   SetUserAction(eventAction);
   SetUserAction(new SteppingAction(eventAction));
