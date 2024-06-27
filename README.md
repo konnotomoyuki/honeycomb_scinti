@@ -2,6 +2,7 @@
 Detector simulation with honeycomb structure for reactor neutrino 
 
 ## Compile
+mkdir build
 cd build/
 cmake ../B4a
 make
