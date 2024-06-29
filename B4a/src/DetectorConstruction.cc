@@ -225,6 +225,23 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
                  boardMaterial,  // its material
                  "Board3");   // its name
   
+  G4Colour calor_color = G4Colour::Magenta();
+  G4VisAttributes *calor_attributes = new G4VisAttributes(calor_color);
+  calor_attributes->SetVisibility(true);
+  calor_attributes->SetForceWireframe(true);
+  calorLV->SetVisAttributes(calor_attributes);
+  vetoLV->SetVisAttributes(calor_attributes);
+  veto2LV->SetVisAttributes(calor_attributes);
+  veto3LV->SetVisAttributes(calor_attributes);
+  
+  G4Colour veto_color(0., 1., 0., 0.5);    // red, green, blue, alpha
+  G4VisAttributes *veto_attributes = new G4VisAttributes(veto_color);
+  veto_attributes->SetVisibility(true);
+  veto_attributes->SetForceWireframe(true);
+  boardLV->SetVisAttributes(veto_attributes);
+  board2LV->SetVisAttributes(veto_attributes);
+  board3LV->SetVisAttributes(veto_attributes);
+  
   int nx = (int)(detSize / calorSizeXY);
   int ny = (int)(detSize / calorSizeXY);
   int nz = (int)(detSize / calorThickness);
@@ -413,10 +430,6 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
   // Visualization attributes
   //
   worldLV->SetVisAttributes (G4VisAttributes::GetInvisible());
-
-  auto simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,1.0,1.0));
-  simpleBoxVisAtt->SetVisibility(true);
-  calorLV->SetVisAttributes(simpleBoxVisAtt);
 
   //
   // Always return the physical World
